@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <script src="raphael-min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+      <script>
+          $(function() {
+            var paper = Raphael(0, 0, document.body.offsetWidth, document.body.offsetHeight);
+            var circle = paper.circle(50, 40, 10);
+            circle.attr("fill", "#f00");
+            circle.attr("stroke", "#fff");
+            $("body").keydown(function(e) {
+                var oldX = circle.attrs.cx;
+                var oldY = circle.attrs.cy;
+                var stepSize = 50;
+                paper.circle(Math.random() * document.body.offsetWidth, Math.random()* document.body.offsetHeight, 10);
+                if(e.keyCode == 37 || e.keyCode == 65) {
+                    circle.attr({cx: oldX - stepSize})
+                }
+                if(e.keyCode == 39 || e.keyCode == 68) {
+                    circle.attr({cx: oldX + stepSize})
+                }
+                if(e.keyCode == 87 || e.keyCode == 38) {
+                    circle.attr({cy: oldY - stepSize})
+                }
+                if(e.keyCode == 83 || e.keyCode == 40) {
+                    circle.attr({cy: oldY + stepSize})
+                }
+                console.log(e);
+            })
+          })
+      </script>
   </head>
   <body>
-    <h1>
-      Wooo
-    </h1>
   </body>
 </html>
